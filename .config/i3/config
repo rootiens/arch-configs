@@ -10,13 +10,14 @@ floating_modifier $super
 
 #autostart
 #exec --no-startup-id hsetroot -center ~/.wallpaper.png
-exec --no-startup-id xsettingsd &
-#exec --no-startup-id picom -b --e --blur-method dual_kawase --blur-strength 7
+#exec --no-startup-id xsettingsd &
+exec --no-startup-id nm-applet &
+exec --no-startup-id picom -b --e --blur-method dual_kawase --blur-strength 7 --no-fading-openclose
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-exec_always "feh --bg-scale ~/Pictures/wal_6.jpg"
+exec_always "feh --bg-scale ~/Pictures/Bridge.jpg"
 exec_always "setxkbmap -layout us,ir"
 exec_always "setxkbmap -option 'grp:alt_shift_toggle'"
-exec "./home/rootiens/cfw/cfw"
+exec --no-startup-id "~/cfw/cfw &"  
 exec_always "xrandr --output DP-1-1 --right-of eDP-1-1 --auto"
 exec_always "~/.config/polybar/launch.sh --forest"
 
@@ -34,7 +35,8 @@ bindsym $super+Shift+d exec i3-dmenu-desktop --dmenu="dmenu -i -fn 'Noto Sans:si
 bindsym $super+d exec ~/.config/rofi/bin/launcher_colorful
 # common apps keybinds
 bindsym Print exec scrot 'Cheese_%a-%d%b%y_%H.%M.png' -e 'viewnior ~/$f'
-bindsym $super+l exec i3lock-fancy 
+#bindsym $super+l exec i3lock-fancy 
+bindsym $super+l exec "~/.scripts/lock-run"
 
 # Area ScreenShot
 bindsym --release $super+shift+s exec flameshot gui
@@ -162,8 +164,10 @@ for_window [class=Xfburn|GParted|System-config-printer.py|Lxtask|Pavucontrol|Exo
 #client.placeholder          #2f343f #2f343f #d8dee8 #2f343f #2f343f
 #client.background           #2f343f
 
-client.focused          #DA6E89 #DA6E89 #FFFFFF #98C379   #F20000
-client.focused_inactive #61AFEF #61AFEF #1E222A #98C379   #61AFEF
+#client.focused          #DA6E89 #DA6E89 #FFFFFF #98C379   #F20000
+#client.focused_inactive #61AFEF #61AFEF #1E222A #98C379   #61AFEF
+client.focused		#121212 #121212 #e0e0e0 #121212
+client.focused_inactive #000000 #000000 #e0e0e0 #000000
 client.unfocused        #2C3038 #2C3038 #FFFFFF #98C379   #2C3038
 client.urgent           #C678DD #C678DD #FFFFFF #98C379   #C678DD
 client.placeholder      #1E222A #1E222A #FFFFFF #98C379   #1E222A
