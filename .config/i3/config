@@ -12,12 +12,11 @@ floating_modifier $super
 #exec --no-startup-id hsetroot -center ~/.wallpaper.png
 #exec --no-startup-id xsettingsd &
 exec --no-startup-id nm-applet &
-exec --no-startup-id picom -b --e --blur-method dual_kawase --blur-strength 7 --no-fading-openclose
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-exec_always "feh --bg-scale ~/Pictures/Bridge.jpg"
+#exec_always "feh --bg-scale ~/Pictures/Bridge.jpg"
 exec_always "setxkbmap -layout us,ir"
 exec_always "setxkbmap -option 'grp:alt_shift_toggle'"
-exec --no-startup-id "~/cfw/cfw &"  
+exec --no-startup-id "nekoray"
 exec_always "xrandr --output DP-1-1 --right-of eDP-1-1 --auto"
 exec_always "~/.config/polybar/launch.sh --forest"
 
@@ -25,18 +24,24 @@ exec_always "~/.config/polybar/launch.sh --forest"
 bindsym $super+Return exec xfce4-terminal
 
 # Adding Gaps
-gaps inner 5
-gaps outer 5
+#gaps inner 5
+#gaps outer 5
 #border_radius 5
+smart_gaps on
+smart_borders on
+hide_edge_borders smart_no_gaps
 
 # start dmenu (a program launcher)
-bindsym $super+Shift+d exec i3-dmenu-desktop --dmenu="dmenu -i -fn 'Noto Sans:size=8'"
+#bindsym $super+Shift+d exec i3-dmenu-desktop --dmenu="dmenu -i -fn 'Noto Sans:size=8'"
 #bindsym $super+d exec rofi -lines 12 -padding 18 -width 60 -location 0 -show drun -sidebar-mode -columns 3 -font 'Noto Sans 8'
-bindsym $super+d exec ~/.config/rofi/bin/launcher_colorful
+#bindsym $super+d exec ~/.config/rofi/bin/launcher_colorful
+
+bindsym $super+d exec rofi -modi drun -show drun
+
 # common apps keybinds
 bindsym Print exec scrot 'Cheese_%a-%d%b%y_%H.%M.png' -e 'viewnior ~/$f'
-#bindsym $super+l exec i3lock-fancy 
-bindsym $super+l exec "~/.scripts/lock-run"
+#bindsym $super+l exec i3lock-fancy
+bindsym $super+l exec "i3lock"
 
 # Area ScreenShot
 bindsym --release $super+shift+s exec flameshot gui
@@ -58,7 +63,7 @@ bindsym XF86AudioStop exec playerctl stop
 
 # kill focused window
 bindsym $super+c kill
-bindsym $alt+F4 kill
+#bindsym $alt+F4 kill
 
 # toggle floating
 
@@ -129,43 +134,14 @@ mode "resize" {
 bindsym $super+r mode "resize"
 
 # panel
-#bar {
-       # colors {
-       # background #2f343f
-       # statusline #2f343f
-       # separator #4b5262
-
-       # colour of border, background, and text
-       #focused_workspace       #2f343f #bf616a #d8dee8
-       # active_workspace        #2f343f #2f343f #d8dee8
-       # inactive_workspace      #2f343f #2f343f #d8dee8
-       # urgent_workspacei       #2f343f #ebcb8b #2f343f
-   # }
- #       status_command i3status
-#}
+bar {
+	#position top
+        status_command i3status
+}
 
 # window rules, you can find the window class using xprop
 for_window [class=".*"] border pixel 1
 assign [class=URxvt] 1
-#assign [class=Firefox|Transmission-gtk] 2
-#assign [class=Thunar|File-roller] 3
-#assign [class=Geany|Evince|Gucharmap|Soffice|libreoffice*] 4
-#assign [class=Audacity|Vlc|mpv|Ghb|Xfburn|Gimp*|Inkscape] 5
-#assign [class=Lxappearance|System-config-printer.py|Lxtask|GParted|Pavucontrol|Exo-helper*|Lxrandr|Arandr] 6
-for_window [class=Viewnior|feh|Audacious|File-roller|Lxappearance|Lxtask|Pavucontrol] floating enable
-for_window [class=URxvt|Firefox|Geany|Evince|Soffice|libreoffice*|mpv|Ghb|Xfburn|Gimp*|Inkscape|Vlc|Lxappearance|Audacity] focus
-for_window [class=Xfburn|GParted|System-config-printer.py|Lxtask|Pavucontrol|Exo-helper*|Lxrandr|Arandr] focus
-
-# colour of border, background, text, indicator, and child_border
-#client.focused              #bf616a #2f343f #d8dee8 #bf616a #d8dee8
-#client.focused_inactive     #2f343f #2f343f #d8dee8 #2f343f #2f343f
-#client.unfocused            #2f343f #2f343f #d8dee8 #2f343f #2f343f
-#client.urgent               #2f343f #2f343f #d8dee8 #2f343f #2f343f
-#client.placeholder          #2f343f #2f343f #d8dee8 #2f343f #2f343f
-#client.background           #2f343f
-
-#client.focused          #DA6E89 #DA6E89 #FFFFFF #98C379   #F20000
-#client.focused_inactive #61AFEF #61AFEF #1E222A #98C379   #61AFEF
 client.focused		#121212 #121212 #e0e0e0 #121212
 client.focused_inactive #000000 #000000 #e0e0e0 #000000
 client.unfocused        #2C3038 #2C3038 #FFFFFF #98C379   #2C3038
@@ -173,4 +149,3 @@ client.urgent           #C678DD #C678DD #FFFFFF #98C379   #C678DD
 client.placeholder      #1E222A #1E222A #FFFFFF #98C379   #1E222A
 
 client.background       #1E222A
-#client.background #F20000
