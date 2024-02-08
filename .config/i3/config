@@ -12,7 +12,7 @@ floating_modifier $super
 exec --no-startup-id nm-applet &
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 #exec_always "feh --bg-scale ~/Pictures/Bridge.jpg"
-exec_always "setxkbmap -layout us,ir"
+exec_always "setxkbmap -layout us,ir -variant ,winkeys"
 exec_always "setxkbmap -option 'grp:alt_shift_toggle'"
 exec --no-startup-id "sudo nekoray"
 exec_always "xrandr --output DP1 --right-of eDP1 --auto"
